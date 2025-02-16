@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/interTwin-eu/kubernetes-usage-accounting:
+      branch: master
+      repo: https://github.com/interTwin-eu/kubernetes-usage-accounting
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hilly-dandelion-seal.sh
+        container: qc.acc_lousy-puce-shrimp
+  QC.Doc:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-platinum-bear.sh
+        container: qc.doc_thirsty-magnolia-sheep
+      github.com/interTwin-eu/kubernetes-usage-accounting git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-ecru-chimpanzee.sh
+        container: qc.doc_smelly-rust-gecko
+      github.com/interTwin-eu/kubernetes-usage-accounting markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.pokey-apricot-dachsbracke.sh
+        container: qc.doc_whiny-heliotrope-kingfisher
+  QC.Lic:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-periwinkle-indri.sh
+        container: qc.lic_paltry-tan-dollar
+  QC.Sec:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-tan-ibis.sh
+        container: qc.sec_lousy-charcoal-dalmatian
+  QC.Sty:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-coral-chihuahua.sh
+        container: qc.sty_lousy-tomato-echidna
+      github.com/interTwin-eu/kubernetes-usage-accounting hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.leaky-carmine-lion.sh
+        container: qc.sty_slaphappy-amethyst-mammoth
+  QC.Uni:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-eggplant-axolotl.sh
+        container: qc.uni_nippy-taupe-shrew
+  QC.Ver:
+    repos:
+      github.com/interTwin-eu/kubernetes-usage-accounting get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.foggy-lime-gopher.sh
+        container: qc.ver_dorky-viridian-tiger
+timeout: 5400
